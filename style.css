@@ -67,6 +67,8 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
 .w.sys:not(.on) { color: var(--ink2); opacity: 0.75; }
 .w.sys:not(.on) i { background: transparent !important; box-shadow: inset 0 0 0 1.5px var(--ink2); }
 
+/* the number of parts a layer holds, small and quiet after its name */
+.w.sys small, .slide small { font-family: var(--sans); font-size: 11px; letter-spacing: 0.4px; color: var(--ink2); margin-left: 6px; font-variant-numeric: tabular-nums; }
 /* the speed: one large number, the other two small beside it */
 .speeds { display: flex; align-items: flex-end; gap: 6px; margin: 0 -10px; }
 .spd { display: inline-flex; align-items: baseline; gap: 5px; color: var(--ink2); padding: 12px 10px 6px; min-height: 48px; }
