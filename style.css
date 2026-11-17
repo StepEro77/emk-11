@@ -96,6 +96,12 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
 #tabs button.on { color: var(--ink); }
 #tabs button.on::before { content: ""; position: absolute; left: 0; right: 12px; top: -1px; height: 1px; background: var(--ink); }
 
+/* four speeds on a phone: a little less air between them and a slightly smaller large number, so the row stays one line */
+@media (max-width: 899px) {
+  .spd { padding: 12px 7px 6px; }
+  .speeds { margin: 0 -7px; }
+  .spd.on b { font-size: 38px; }
+}
 /* the arrow that folds the words away or brings them back. Phones only, see below */
 #tabs #fold { display: none; }
 @media (max-width: 899px) {
@@ -108,7 +114,7 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
   body.folded[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 243, 252, 0) 0, rgba(246, 243, 252, 0.75) 26px, rgba(246, 243, 252, 0.92) 100%); }
   body.folded .words { margin-top: 0; }
   body.folded .slide { margin-top: 0; }
-  body.folded .spd { padding: 6px 10px 2px; min-height: 44px; }
+  body.folded .spd { padding: 6px 7px 2px; min-height: 44px; }
   body.folded .spd.on b { font-size: 26px; }
   body.folded #tabs { margin-top: 6px; }
 }
