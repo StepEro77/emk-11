@@ -13,8 +13,8 @@ html[lang="hy"] { --serif: "Marcellus", "Noto Sans Armenian", "Segoe UI", "Arial
 html[lang="hy"] .lead { font-size: 14.5px; }
 /* on a phone the Armenian name and hint are wider: the name a step smaller so it clears the language words, the hint below the two line slogan */
 @media (max-width: 899px) {
-  html[lang="hy"] #top .name { font-size: 25px; letter-spacing: 0.8px; }
-  html[lang="hy"] #hint { top: calc(104px + var(--safe-t)); padding: 0 var(--pad); }
+  html[lang="hy"] #top .name { font-size: min(25px, calc((100vw - 208px) / 7.6)); letter-spacing: 0.8px; }
+  html[lang="hy"] #hint { padding: 0 var(--pad); }
 }
 /* in the Layers mode the page is paper white, so the words are ink */
 body[data-mode="layers"] { --ink: #2a1a4f; --ink2: rgba(42, 26, 79, 0.62); --rule: rgba(42, 26, 79, 0.28); }
@@ -26,15 +26,20 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 
 /* top: the name, the slogan, the language, the i */
 #top { position: fixed; left: 0; right: 0; top: 0; padding: calc(16px + var(--safe-t)) var(--pad) 0; display: flex; align-items: flex-start; justify-content: space-between; pointer-events: none; color: var(--ink); transition: color 0.3s; }
-#top .name { font-family: var(--serif); font-size: 30px; letter-spacing: 1.5px; line-height: 1; }
-#slogan { font-family: var(--serif); font-size: 12.5px; color: var(--ink2); margin-top: 7px; letter-spacing: 0.3px; }
-#top .tools { display: flex; align-items: center; gap: 8px; pointer-events: auto; margin: -6px -6px 0 0; }
+/* the name is one line and gives way on a narrow phone, so it never runs into the language words and the two round buttons beside it */
+#top .name { font-family: var(--serif); font-size: min(30px, calc((100vw - 208px) / 7.2)); letter-spacing: 1.5px; line-height: 1; white-space: nowrap; }
+/* the slogan stays one line: it sits below the buttons, so it may run under them without touching them */
+#top .id { min-width: 0; }
+#slogan { font-family: var(--serif); font-size: 12.5px; color: var(--ink2); margin-top: 7px; letter-spacing: 0.3px; white-space: nowrap; }
+#top .tools { display: flex; align-items: center; gap: 2px; pointer-events: auto; margin: -6px -6px 0 0; }
+#lang { margin-right: 4px; }
 #lang { display: flex; gap: 2px; font-size: 12.5px; letter-spacing: 0.8px; }
 #lang button { color: var(--ink2); padding: 0 7px; height: 40px; position: relative; }
 #lang button.on { color: var(--ink); }
 #lang button.on::after { content: ""; position: absolute; left: 7px; right: 7px; bottom: 9px; height: 1px; background: var(--ink); }
-#about-btn { width: 40px; height: 40px; position: relative; font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink); }
-#about-btn::before { content: ""; position: absolute; left: 8px; top: 8px; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--rule); }
+#about-btn, #share-btn { width: 34px; height: 40px; position: relative; font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink); }
+#about-btn::before, #share-btn::before { content: ""; position: absolute; left: 5px; top: 8px; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--rule); }
+#share-btn svg { display: block; width: 12px; height: 12px; margin: 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 /* foot: the words of the mode, then the mode names. A soft fall into the dark keeps the words readable, it is not a box */
 #foot { position: fixed; left: 0; right: 0; bottom: 0; padding: 46px var(--pad) calc(14px + var(--safe-b)); color: var(--ink); transition: color 0.3s;
@@ -91,20 +96,48 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
 #tabs button.on { color: var(--ink); }
 #tabs button.on::before { content: ""; position: absolute; left: 0; right: 12px; top: -1px; height: 1px; background: var(--ink); }
 
+/* the arrow that folds the words away or brings them back. Phones only, see below */
+#tabs #fold { display: none; }
+@media (max-width: 899px) {
+  #tabs #fold { display: block; width: 46px; height: 46px; margin: 0 -6px 0 auto; padding: 0; position: relative; }
+  #tabs #fold::after { content: ""; position: absolute; left: 18px; top: 15px; width: 9px; height: 9px; border-right: 1.5px solid var(--ink2); border-bottom: 1.5px solid var(--ink2); transform: rotate(45deg); transition: transform 0.25s; }
+  body.folded #tabs #fold::after { transform: rotate(-135deg); top: 21px; }
+  /* folded: the reading goes, the controls stay */
+  body.folded #panel .lead, body.folded #panel .spec, body.folded #panel .fact, body.folded #panel .note, body.folded #panel .legend, body.folded #panel .words.cols { display: none; }
+  body.folded #foot { padding-top: 26px; background: linear-gradient(180deg, rgba(31, 22, 64, 0) 0, rgba(31, 22, 64, 0.55) 26px, rgba(31, 22, 64, 0.8) 100%); }
+  body.folded[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 243, 252, 0) 0, rgba(246, 243, 252, 0.75) 26px, rgba(246, 243, 252, 0.92) 100%); }
+  body.folded .words { margin-top: 0; }
+  body.folded .slide { margin-top: 0; }
+  body.folded .spd { padding: 6px 10px 2px; min-height: 44px; }
+  body.folded .spd.on b { font-size: 26px; }
+  body.folded #tabs { margin-top: 6px; }
+}
+
 /* hint: one line, then gone */
 #hint { position: fixed; left: 0; right: 0; top: calc(86px + var(--safe-t)); text-align: center; font-size: 12px; letter-spacing: 0.4px; color: var(--ink2); pointer-events: none; transition: opacity 0.8s; }
 #hint.gone { opacity: 0; }
 
-/* about: a plain sheet of paper */
-#about { position: fixed; inset: 0; background: rgba(20, 12, 44, 0.5); display: flex; align-items: flex-end; justify-content: center; z-index: 20; }
-#about[hidden] { display: none; }
-#about .sheet { position: relative; width: min(560px, 100vw); max-height: 88vh; overflow-y: auto; background: var(--paper); color: var(--purple); padding: 26px 24px calc(28px + var(--safe-b)); -webkit-user-select: text; user-select: text; -webkit-overflow-scrolling: touch; }
-#about h2 { margin: 0 0 14px; font-family: var(--serif); font-weight: 400; font-size: 26px; letter-spacing: 1px; }
-#about h2 span { font-size: 13px; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(42, 26, 79, 0.55); margin-left: 8px; }
-#about h4 { margin: 16px 0 3px; font-family: var(--serif); font-weight: 400; font-size: 16px; }
-#about p { font-size: 14px; line-height: 1.6; color: rgba(42, 26, 79, 0.82); margin: 0 0 7px; }
-#about b { color: var(--purple); font-weight: 600; }
-#about-close { position: absolute; right: 16px; top: 14px; width: 30px; height: 30px; font-size: 24px; line-height: 1; color: var(--purple); }
+/* about and share: a plain sheet of paper each */
+.over { position: fixed; inset: 0; background: rgba(20, 12, 44, 0.5); display: flex; align-items: flex-end; justify-content: center; z-index: 20; }
+.over[hidden] { display: none; }
+.over .sheet { position: relative; width: min(560px, 100vw); max-height: 88vh; overflow-y: auto; background: var(--paper); color: var(--purple); padding: 26px 24px calc(28px + var(--safe-b)); -webkit-user-select: text; user-select: text; -webkit-overflow-scrolling: touch; }
+.over h2 { margin: 0 0 14px; font-family: var(--serif); font-weight: 400; font-size: 26px; letter-spacing: 1px; }
+.over h2 .kind { font-size: 13px; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(42, 26, 79, 0.55); margin-left: 8px; }
+.over h4 { margin: 16px 0 3px; font-family: var(--serif); font-weight: 400; font-size: 16px; }
+.over p { font-size: 14px; line-height: 1.6; color: rgba(42, 26, 79, 0.82); margin: 0 0 7px; }
+.over b { color: var(--purple); font-weight: 600; }
+.over .close { position: absolute; right: 16px; top: 14px; width: 30px; height: 30px; font-size: 24px; line-height: 1; color: var(--purple); }
+/* share: the code a friend scans from this screen, the address in plain letters, and words that copy or send the link */
+#share .sheet { text-align: center; }
+#share h2 { text-align: left; }
+/* 246 px is 6 px for every square of the code, so each square falls on whole pixels and no hair lines show between the rows.
+   (The first try was a drawn SVG at 230 px, its rows came out striped on a phone screen and a reader could not decode it.) */
+#share-qr { display: block; width: 246px; height: 246px; margin: 10px auto 8px; background: #fff; border-radius: 6px; image-rendering: pixelated; }
+#share-addr { font-size: 13px; letter-spacing: 0.4px; color: var(--purple); margin: 0; }
+#share .words { justify-content: center; margin: 4px 0 0; column-gap: 14px; }
+#share .w { color: var(--purple); }
+#share .w::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 9px; height: 1px; background: rgba(42, 26, 79, 0.45); }
+#share .w[hidden] { display: none; }
 
 /* loading: the name and a hair line */
 #loading { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--deep); color: #fff; transition: opacity 0.7s; }
