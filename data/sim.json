@@ -7,10 +7,13 @@
    "mach": "Mach 0.4",
    "v_ms": 136.1,
    "v_kmh": 490,
+   "hy": "Ենթաձայնային",
    "text_en": "Slower than sound, the speed of take off and landing. The intake ramps are folded back, the mouth is wide open and the engine pulls in its full air flow.",
    "text_cn": "低于音速，起降速度范围。进气道斜板收回，进气口全开，发动机吸入全部所需空气。",
+   "text_hy": "Ձայնից դանդաղ՝ թռիչքի և վայրէջքի արագություն։ Օդընդունիչի թեքահարթակները ետ են ծալված, մուտքը լայն բաց է, և շարժիչը ներս է քաշում իրեն անհրաժեշտ ամբողջ օդը։",
    "off_en": "Engine off, intake closed. The air cannot pass through, it goes round the jet.",
    "off_cn": "发动机关闭，进气口封闭，空气无法通过，只能绕过机身。",
+   "off_hy": "Շարժիչն անջատված է, օդընդունիչը՝ փակ։ Օդը չի կարող անցնել միջով և շրջանցում է ինքնաթիռը։",
    "on": {
     "surf": {
      "file": "sim_m040_on_surf.bin",
@@ -672,10 +675,13 @@
    "mach": "Mach 0.85",
    "v_ms": 250.8,
    "v_kmh": 900,
+   "hy": "Մերձձայնային",
    "text_en": "Just under the speed of sound, cruise at 11 km. Over the wings and the body the air already runs faster than sound in places.",
    "text_cn": "略低于音速，在 11 公里高空巡航。机翼和机身上方的局部气流已经超过音速。",
+   "text_hy": "Ձայնի արագությունից մի փոքր ցածր՝ չվերթային թռիչք 11 կմ բարձրության վրա։ Թևերի և իրանի վրա օդը տեղ-տեղ արդեն ձայնից արագ է շարժվում։",
    "off_en": "Engine off, intake closed. The air cannot pass through, it goes round the jet.",
    "off_cn": "发动机关闭，进气口封闭，空气无法通过，只能绕过机身。",
+   "off_hy": "Շարժիչն անջատված է, օդընդունիչը՝ փակ։ Օդը չի կարող անցնել միջով և շրջանցում է ինքնաթիռը։",
    "on": {
     "surf": {
      "file": "sim_m085_on_surf.bin",
@@ -1337,10 +1343,13 @@
    "mach": "Mach 2.0",
    "v_ms": 590.1,
    "v_kmh": 2120,
+   "hy": "Գերձայնային",
    "text_en": "Twice the speed of sound, at 11 km. Shock waves stand at the nose and at the intake and slow the air down before it reaches the engine.",
    "text_cn": "两倍音速，高度 11 公里。激波位于机头和进气口处，使空气在到达发动机之前减速。",
+   "text_hy": "Ձայնի արագության կրկնապատիկը՝ 11 կմ բարձրության վրա։ Հարվածային ալիքները կանգնած են քթամասի և օդընդունիչի մոտ և դանդաղեցնում են օդը, նախքան այն կհասնի շարժիչին։",
    "off_en": "Engine off, intake closed. The air cannot pass through, it goes round the jet.",
    "off_cn": "发动机关闭，进气口封闭，空气无法通过，只能绕过机身。",
+   "off_hy": "Շարժիչն անջատված է, օդընդունիչը՝ փակ։ Օդը չի կարող անցնել միջով և շրջանցում է ինքնաթիռը։",
    "on": null,
    "off": {
     "surf": {

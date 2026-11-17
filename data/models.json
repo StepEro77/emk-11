@@ -4,7 +4,6 @@
   "panel": 1812,
   "light_white": 19,
   "light_green": 26,
-  "camo_dark": 126668,
   "light_red": 27,
   "hatch": 728,
   "vent": 36,
@@ -12,8 +11,9 @@
   "nozzle": 14166,
   "gear": 50,
   "canopy": 49,
-  "belly": 95654,
-  "camo_light": 123151,
+  "belly": 98997,
+  "camo_dark": 118078,
+  "camo_light": 128398,
   "glass": 2866
  },
  "systems": [
@@ -21,6 +21,7 @@
    "key": "cockpit",
    "en": "Cockpit",
    "cn": "座舱",
+   "hy": "Օդաչուի խցիկ",
    "colour": [
     0.95,
     0.6,
@@ -39,6 +40,7 @@
    "key": "fuel",
    "en": "Fuel",
    "cn": "燃油",
+   "hy": "Վառելիք",
    "colour": [
     0.15,
     0.4,
@@ -71,6 +73,7 @@
    "key": "engines",
    "en": "Engines and nozzles",
    "cn": "发动机与喷管",
+   "hy": "Շարժիչներ և փողակներ",
    "colour": [
     0.45,
     0.45,
@@ -103,6 +106,7 @@
    "key": "hydraulics",
    "en": "Hydraulics",
    "cn": "液压",
+   "hy": "Հիդրավլիկա",
    "colour": [
     0.5,
     0.25,
@@ -118,6 +122,7 @@
    "key": "actuators",
    "en": "Actuators",
    "cn": "作动器",
+   "hy": "Շարժաբերներ",
    "colour": [
     0.9,
     0.25,
@@ -135,6 +140,7 @@
    "key": "electrics",
    "en": "Electrics",
    "cn": "电气",
+   "hy": "Էլեկտրական համակարգ",
    "colour": [
     0.05,
     0.75,
@@ -150,6 +156,7 @@
    "key": "cooling",
    "en": "Cooling and power unit",
    "cn": "冷却与辅助动力",
+   "hy": "Սառեցում և ուժային ագրեգատ",
    "colour": [
     0.2,
     0.7,
@@ -166,6 +173,7 @@
    "key": "avionics",
    "en": "Avionics and sensors",
    "cn": "航电与传感器",
+   "hy": "Ավիոնիկա և սենսորներ",
    "colour": [
     0.95,
     0.85,
@@ -183,6 +191,7 @@
    "key": "gear",
    "en": "Landing gear",
    "cn": "起落架",
+   "hy": "Շասսի",
    "colour": [
     0.6,
     0.4,
@@ -582,8 +591,8 @@
     -0.0
    ],
    "meshes": [
-    "mv_canopy_back__camo_dark",
     "mv_canopy_back__belly",
+    "mv_canopy_back__camo_dark",
     "mv_canopy_back__camo_light",
     "mv_canopy_back__glass",
     "mv_canopy_back__seal"
