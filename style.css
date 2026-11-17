@@ -133,6 +133,14 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
 .over p { font-size: 14px; line-height: 1.6; color: rgba(42, 26, 79, 0.82); margin: 0 0 7px; }
 .over b { color: var(--purple); font-weight: 600; }
 .over .close { position: absolute; right: 16px; top: 14px; width: 30px; height: 30px; font-size: 24px; line-height: 1; color: var(--purple); }
+/* contact: the WeChat ID is a word to press once the QR picture is there, the picture opens under it */
+.over .wx { font: inherit; font-weight: 600; color: var(--purple); -webkit-user-select: text; user-select: text; cursor: text; }
+.over .wx-hint { display: none; color: rgba(42, 26, 79, 0.6); }
+body.wx-ready .over .wx { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; padding: 6px 0; }
+body.wx-ready .over .wx-hint { display: inline; }
+#wx-qr { margin: 4px 0 10px; }
+#wx-qr[hidden] { display: none; }
+#wx-qr img { display: block; width: min(240px, 70vw); height: auto; border-radius: 8px; background: #fff; }
 /* share: the code a friend scans from this screen, the address in plain letters, and words that copy or send the link */
 #share .sheet { text-align: center; }
 #share h2 { text-align: left; }
