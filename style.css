@@ -11,6 +11,11 @@
 /* Armenian: the poster font has no Armenian letters, a plain upright sans reads best beside it */
 html[lang="hy"] { --serif: "Marcellus", "Noto Sans Armenian", "Segoe UI", "Arial", sans-serif; }
 html[lang="hy"] .lead { font-size: 14.5px; }
+/* on a phone the Armenian name and hint are wider: the name a step smaller so it clears the language words, the hint below the two line slogan */
+@media (max-width: 899px) {
+  html[lang="hy"] #top .name { font-size: 25px; letter-spacing: 0.8px; }
+  html[lang="hy"] #hint { top: calc(104px + var(--safe-t)); padding: 0 var(--pad); }
+}
 /* in the Layers mode the page is paper white, so the words are ink */
 body[data-mode="layers"] { --ink: #2a1a4f; --ink2: rgba(42, 26, 79, 0.62); --rule: rgba(42, 26, 79, 0.28); }
 
@@ -23,11 +28,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 #top { position: fixed; left: 0; right: 0; top: 0; padding: calc(16px + var(--safe-t)) var(--pad) 0; display: flex; align-items: flex-start; justify-content: space-between; pointer-events: none; color: var(--ink); transition: color 0.3s; }
 #top .name { font-family: var(--serif); font-size: 30px; letter-spacing: 1.5px; line-height: 1; }
 #slogan { font-family: var(--serif); font-size: 12.5px; color: var(--ink2); margin-top: 7px; letter-spacing: 0.3px; }
-#top .tools { display: flex; align-items: center; gap: 16px; pointer-events: auto; padding-top: 5px; }
-#lang { display: flex; gap: 11px; font-size: 12px; letter-spacing: 0.8px; }
-#lang button { color: var(--ink2); padding: 4px 0 3px; border-bottom: 1px solid transparent; }
-#lang button.on { color: var(--ink); border-bottom-color: var(--ink); }
-#about-btn { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--rule); font-family: var(--serif); font-style: italic; font-size: 14px; line-height: 22px; color: var(--ink); }
+#top .tools { display: flex; align-items: center; gap: 8px; pointer-events: auto; margin: -6px -6px 0 0; }
+#lang { display: flex; gap: 2px; font-size: 12.5px; letter-spacing: 0.8px; }
+#lang button { color: var(--ink2); padding: 0 7px; height: 40px; position: relative; }
+#lang button.on { color: var(--ink); }
+#lang button.on::after { content: ""; position: absolute; left: 7px; right: 7px; bottom: 9px; height: 1px; background: var(--ink); }
+#about-btn { width: 40px; height: 40px; position: relative; font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink); }
+#about-btn::before { content: ""; position: absolute; left: 8px; top: 8px; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--rule); }
 
 /* foot: the words of the mode, then the mode names. A soft fall into the dark keeps the words readable, it is not a box */
 #foot { position: fixed; left: 0; right: 0; bottom: 0; padding: 46px var(--pad) calc(14px + var(--safe-b)); color: var(--ink); transition: color 0.3s;
@@ -41,19 +48,23 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
 .note { font-size: 11px; line-height: 1.5; color: var(--ink2); margin-top: 11px !important; opacity: 0.85; }
 
 /* controls are plain words. On is underlined, off is quiet */
-.words { display: flex; flex-wrap: wrap; column-gap: 22px; row-gap: 9px; margin-top: 14px; }
-.w { font-family: var(--serif); font-size: 15px; color: var(--ink2); padding: 2px 0 3px; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
-.w.on { color: var(--ink); border-bottom-color: var(--ink); }
+.words { display: flex; flex-wrap: wrap; column-gap: 6px; row-gap: 0; margin: 6px -10px 0; }
+/* every word is a touch target of 44 px, the line under an active word sits close to the letters */
+.w { font-family: var(--serif); font-size: 16px; color: var(--ink2); padding: 0 10px; height: 44px; display: inline-flex; align-items: center; position: relative; transition: color 0.2s; white-space: nowrap; }
+.w.on { color: var(--ink); }
+.w.on::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 9px; height: 1px; background: var(--ink); }
 .w.none { opacity: 0.45; }
-.words.cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; row-gap: 7px; }
-.w.sys { display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 13px; text-align: left; border-bottom: 0; padding: 1px 0; }
-.w.sys i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
-.w.sys:not(.on) { text-decoration: line-through; opacity: 0.6; }
-.w.sys:not(.on) i { opacity: 0.35; }
+.words.cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; row-gap: 0; margin: 12px 0 0; border-top: 1px solid var(--rule); }
+.w.sys { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 13.5px; line-height: 1.2; text-align: left; white-space: normal; height: auto; min-height: 44px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+.w.sys::after { display: none; }
+.w.sys i { width: 12px; height: 12px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 6px currentColor; color: transparent; }
+.w.sys.on i { box-shadow: none; }
+.w.sys:not(.on) { color: var(--ink2); opacity: 0.75; }
+.w.sys:not(.on) i { background: transparent !important; box-shadow: inset 0 0 0 1.5px var(--ink2); }
 
 /* the speed: one large number, the other two small beside it */
-.speeds { display: flex; align-items: baseline; gap: 20px; }
-.spd { display: inline-flex; align-items: baseline; gap: 5px; color: var(--ink2); }
+.speeds { display: flex; align-items: flex-end; gap: 6px; margin: 0 -10px; }
+.spd { display: inline-flex; align-items: baseline; gap: 5px; color: var(--ink2); padding: 12px 10px 6px; min-height: 48px; }
 .spd b { font-family: var(--serif); font-weight: 400; font-size: 17px; transition: font-size 0.25s; }
 .spd span { display: none; font-size: 12px; letter-spacing: 0.5px; }
 .spd.on { color: var(--ink); }
@@ -63,22 +74,22 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
 #panel .speeds ~ .lead { margin-top: 10px; font-size: 14.5px; }
 
 /* pressure colours: a thin line, a word at each end */
-.legend { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink2); }
+.legend { display: flex; align-items: center; gap: 10px; margin-top: 6px; font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--ink2); }
 .legend i { flex: 1; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2158c0, #b7c6e6 35%, #e6e6ea 50%, #e7b3ae 65%, #c7201f); }
 
 /* the skin slider: a hair line and a dot */
-.slide { display: flex; align-items: center; gap: 14px; margin-top: 14px; font-family: var(--serif); font-size: 15px; }
-.slide input { flex: 1; -webkit-appearance: none; appearance: none; height: 22px; background: transparent; margin: 0; }
+.slide { display: flex; align-items: center; gap: 14px; margin-top: 4px; min-height: 44px; font-family: var(--serif); font-size: 16px; }
+.slide input { flex: 1; -webkit-appearance: none; appearance: none; height: 44px; background: transparent; margin: 0; }
 .slide input::-webkit-slider-runnable-track { height: 1px; background: var(--ink2); }
 .slide input::-moz-range-track { height: 1px; background: var(--ink2); }
-.slide input::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--ink); margin-top: -6px; }
-.slide input::-moz-range-thumb { width: 13px; height: 13px; border: 0; border-radius: 50%; background: var(--ink); }
+.slide input::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); margin-top: -10px; }
+.slide input::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: var(--ink); }
 
 /* mode names */
-#tabs { display: flex; gap: 26px; margin-top: 16px; padding-top: 11px; border-top: 1px solid var(--rule); }
-#tabs button { font-family: var(--serif); font-size: 16px; letter-spacing: 0.4px; color: var(--ink2); padding: 2px 0; position: relative; }
+#tabs { display: flex; gap: 8px; margin: 14px -10px 0; padding: 0 10px; border-top: 1px solid var(--rule); }
+#tabs button { font-family: var(--serif); font-size: 17px; letter-spacing: 0.4px; color: var(--ink2); padding: 0 12px 0 0; height: 46px; position: relative; margin-right: 10px; }
 #tabs button.on { color: var(--ink); }
-#tabs button.on::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 1px; background: var(--ink); }
+#tabs button.on::before { content: ""; position: absolute; left: 0; right: 12px; top: -1px; height: 1px; background: var(--ink); }
 
 /* hint: one line, then gone */
 #hint { position: fixed; left: 0; right: 0; top: calc(86px + var(--safe-t)); text-align: center; font-size: 12px; letter-spacing: 0.4px; color: var(--ink2); pointer-events: none; transition: opacity 0.8s; }
@@ -98,7 +109,7 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
 /* loading: the name and a hair line */
 #loading { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--deep); color: #fff; transition: opacity 0.7s; }
 #loading.gone { opacity: 0; pointer-events: none; }
-#loading .name { font-family: var(--serif); font-size: 48px; letter-spacing: 4px; }
+#loading .name { font-family: var(--serif); font-size: min(48px, 10vw); letter-spacing: 3px; white-space: nowrap; }
 #loading .bar { width: 150px; height: 1px; background: rgba(255, 255, 255, 0.25); margin: 22px auto 12px; }
 #bar-fill { width: 0%; height: 100%; background: #fff; transition: width 0.3s; }
 #load-text { font-size: 11px; letter-spacing: 1px; color: rgba(255, 255, 255, 0.6); min-height: 14px; }
@@ -109,7 +120,10 @@ body[data-mode="layers"] #foot { background: linear-gradient(180deg, rgba(246, 2
   #top { padding-top: 26px; }
   #top .name { font-size: 40px; }
   #slogan { font-size: 15px; margin-top: 9px; }
-  #foot { right: auto; width: 520px; padding: 0 var(--pad) 30px; background: none !important; }
+  /* wide: a soft dark corner behind the words, so air lines that run under them do not cut through the text. It fades out, it is not a box */
+  #foot { right: auto; width: 640px; padding: 90px 120px 30px var(--pad); background: radial-gradient(105% 100% at 0% 100%, rgba(31, 22, 64, 0.92) 0, rgba(31, 22, 64, 0.8) 42%, rgba(31, 22, 64, 0) 72%); }
+  body[data-mode="layers"] #foot { background: radial-gradient(105% 100% at 0% 100%, rgba(246, 243, 252, 0.95) 0, rgba(246, 243, 252, 0.8) 42%, rgba(246, 243, 252, 0) 72%); }
+  body[data-mode="render"] #foot { background: none; }
   .lead { font-size: 17px; }
   #panel .speeds ~ .lead { font-size: 16px; }
   .spd.on b { font-size: 52px; }
