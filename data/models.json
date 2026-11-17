@@ -14,17 +14,16 @@
   "canopy": 49,
   "belly@carbon": 14023,
   "belly@edge": 895,
-  "belly@nickel": 66230,
+  "belly@nickel": 53,
   "belly@steel": 88,
   "belly@titanium": 17761,
   "camo_dark@carbon": 12582,
   "camo_dark@edge": 3481,
-  "camo_dark@nickel": 59181,
   "camo_dark@steel": 482,
   "camo_dark@titanium": 42352,
   "camo_light@carbon": 21824,
   "camo_light@edge": 5819,
-  "camo_light@nickel": 73808,
+  "camo_light@nickel": 232,
   "camo_light@steel": 487,
   "camo_light@titanium": 26460,
   "glass@glass": 2866
@@ -4469,6 +4468,11 @@
   }
  ],
  "gear_rule": "gear fraction g, 0 down to 1 up. knee_t1 = min(1, 2g), trunnion_t2 = max(0, 2g - 1), nose_tn = g, door = (g - 0.9) / 0.1 held to 0..1",
+ "core": {
+  "belly@nickel": 66177,
+  "camo_dark@nickel": 59181,
+  "camo_light@nickel": 73576
+ },
  "materials_source": "Stage 3/06_Structure_Heat/MATERIALS_PROPOSAL.md, first choice of each zone, 8 Nov 2026",
  "ramps": [
   {
